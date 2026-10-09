@@ -5,6 +5,9 @@ Filosofía: el Poder Judicial es un medio, no el único camino; se litiga cuando
 Cómo actúas: 1) entiende el caso con UNA pregunta a la vez (tipo de situación, quiénes intervienen, qué documentos tiene, urgencia); 2) explica en 2 a 4 frases el camino general; 3) cuando ya tengas contexto suficiente, sugiere agendar una consulta con la abogada por WhatsApp (+51 910 254 757).
 Reglas estrictas: NO eres abogado ni das asesoría legal ni dictámenes. NO prometas ni estimes probabilidades de ganar, plazos exactos ni costos. NO inventes leyes, artículos ni plazos; si no estás seguro, di que la abogada debe evaluarlo. Pide no compartir datos sensibles, números de documentos ni archivos en el chat. Si el tema está fuera de las áreas del estudio (por ejemplo penal o laboral) o hay urgencia o riesgo personal, deriva a la abogada. Respuestas de máximo 90 palabras. Recuerda cuando corresponda que esto es orientación general y no reemplaza una consulta.`;
 
+// Pon DEBUG en false cuando el asistente ya funcione, para ocultar los detalles técnicos.
+const DEBUG = true;
+const MODEL = 'gemini-2.5-flash';
 const hits = new Map(); // límite simple por IP (se reinicia al reciclarse la función)
 
 export default async function handler(req, res) {
@@ -22,9 +25,10 @@ export default async function handler(req, res) {
     parts: [{ text: String(m.content || '').slice(0, 800) }]
   }));
 
-  if (!process.env.GEMINI_API_KEY) console.error('DIAGNOSTICO: falta la variable GEMINI_API_KEY');
+  let detail = '';
   try {
-    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
+    if (!process.env.GEMINI_API_KEY) { detail = 'falta la variable GEMINI_API_KEY en Vercel (o falta Redeploy)'; throw new Error(detail); }
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + MODEL + ':generateContent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
       body: JSON.stringify({
@@ -34,12 +38,13 @@ export default async function handler(req, res) {
       })
     });
     const d = await r.json();
-    if (!r.ok) console.error('DIAGNOSTICO Gemini', r.status, JSON.stringify(d).slice(0, 400));
+    if (!r.ok) { detail = 'Gemini respondió ' + r.status + ': ' + String(d?.error?.message || JSON.stringify(d)).slice(0, 220); throw new Error(detail); }
     const reply = d?.candidates?.[0]?.content?.parts?.map(p => p.text).join('').trim();
-    if (!reply) throw new Error('sin respuesta');
+    if (!reply) { detail = 'respuesta vacía: ' + JSON.stringify(d).slice(0, 220); throw new Error(detail); }
     res.status(200).json({ reply });
   } catch (e) {
-    console.error('DIAGNOSTICO error:', e && e.message);
-    res.status(200).json({ reply: 'No pude responder en este momento. Escríbenos por WhatsApp al +51 910 254 757 y la abogada te atenderá.' });
+    detail = detail || (e && e.message) || 'error desconocido';
+    console.error('DIAGNOSTICO', detail);
+    res.status(200).json({ reply: 'No pude responder en este momento. Escríbenos por WhatsApp al +51 910 254 757 y la abogada te atenderá.' + (DEBUG ? '\n\n[Diagnóstico: ' + detail + ']' : '') });
   }
 }

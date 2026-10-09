@@ -7,7 +7,7 @@ Reglas estrictas: NO eres abogado ni das asesoría legal ni dictámenes. NO prom
 
 // Pon DEBUG en false cuando el asistente ya funcione, para ocultar los detalles técnicos.
 const DEBUG = true;
-const MODEL = 'gemini-2.5-flash';
+const MODEL = 'gemini-3.8-flash';
 const hits = new Map(); // límite simple por IP (se reinicia al reciclarse la función)
 
 export default async function handler(req, res) {
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM }] },
         contents,
-        generationConfig: { temperature: 0.5, maxOutputTokens: 400 }
+        generationConfig: { temperature: 0.5, maxOutputTokens: 1024 }
       })
     });
     const d = await r.json();

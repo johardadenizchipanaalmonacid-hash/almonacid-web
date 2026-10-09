@@ -11,7 +11,7 @@
 <style>
 :root{--navy:#101d36;--navy2:#18305a;--gold:#c9a45c;--goldd:#8a6a2a;--paper:#f6f4ef;--ink:#1b2438;--mute:#5b657a;--line:#dcd8cd;--wa:#1faa59;--serif:'Newsreader',Georgia,serif;--sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Arial,sans-serif}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{font:17px/1.65 var(--sans);color:var(--ink);background:var(--paper)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
@@ -19,16 +19,20 @@ a{color:inherit}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:-.015em}
 h2{font-size:clamp(32px,4.4vw,52px);margin-bottom:18px}
 section{padding:100px 0}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:3px;text-decoration:none;border:1px solid transparent;cursor:pointer;font:600 16px var(--sans);transition:transform .2s,background .2s}
-.btn:hover{transform:translateY(-2px)}
-.wa{background:var(--wa);color:#fff}.wa:hover{background:#188c49}
-.ghost{border-color:rgba(255,255,255,.4);color:#fff}.ghost:hover{background:rgba(255,255,255,.08)}
-.btn svg{width:20px;height:20px;fill:currentColor}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:17px 32px;border-radius:999px;text-decoration:none;border:1px solid transparent;cursor:pointer;font:600 16px var(--sans);letter-spacing:.01em;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn svg{width:20px;height:20px;fill:currentColor;flex:none}
+.gold{background:linear-gradient(135deg,#e6c984,#c9a45c 55%,#a8843f);color:#101d36;box-shadow:0 10px 28px rgba(201,164,92,.35),inset 0 1px 0 rgba(255,255,255,.45)}
+.gold:hover{box-shadow:0 16px 36px rgba(201,164,92,.55)}
+.wa{background:linear-gradient(135deg,#25c26a,#118a48);color:#fff;box-shadow:0 10px 26px rgba(18,140,74,.35),inset 0 1px 0 rgba(255,255,255,.28)}
+.wa:hover{box-shadow:0 16px 34px rgba(18,140,74,.55)}
+.ghost{border-color:rgba(201,164,92,.6);color:#fff;background:rgba(255,255,255,.04)}
+.ghost:hover{background:rgba(201,164,92,.14);border-color:var(--gold)}
 .ph{background-color:var(--navy2);background-size:cover;background-position:center;position:relative}
 .ph:after{content:attr(data-label);position:absolute;left:14px;bottom:10px;font-size:12px;color:rgba(255,255,255,.45)}
 
 header{position:sticky;top:0;z-index:20;background:rgba(16,29,54,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,164,92,.25)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
 .brand{font-family:var(--serif);font-size:21px;color:#fff;text-decoration:none}.brand b{color:var(--gold);font-weight:500}
 nav{display:flex;gap:26px;align-items:center}
 nav a{color:#cfd6e4;text-decoration:none;font-size:15px}nav a:hover{color:#fff}
@@ -43,23 +47,39 @@ nav .btn{padding:9px 16px;font-size:14px;color:#fff}
 .cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px}
 .facts{display:flex;flex-wrap:wrap;gap:10px 30px;color:#aab4c8;font-size:15px;border-top:1px solid rgba(255,255,255,.14);padding-top:20px}
 .facts span:before{content:"";display:inline-block;width:8px;height:8px;background:var(--gold);border-radius:50%;margin-right:10px}
-.teaser{background:rgba(255,255,255,.06);border:1px solid rgba(201,164,92,.35);border-radius:10px;padding:26px;backdrop-filter:blur(6px)}
+.teaser{background:rgba(255,255,255,.06);border:1px solid rgba(201,164,92,.35);border-radius:24px;padding:28px;backdrop-filter:blur(6px)}
 .teaser h2{font-size:26px;color:#fff;margin-bottom:6px}
 .teaser p{color:#b8c1d4;font-size:15px;margin-bottom:16px}
 .chips{display:grid;gap:10px}
-.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:6px;padding:12px 14px;font:15px var(--sans);text-align:left;cursor:pointer;transition:background .2s,border-color .2s}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:16px;padding:13px 16px;font:15px var(--sans);text-align:left;cursor:pointer;transition:background .2s,border-color .2s}
 .chip:hover{background:rgba(201,164,92,.18);border-color:var(--gold)}
 .load{animation:rise .9s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 .head{max-width:640px;margin-bottom:48px}.head p{color:var(--mute)}
-.areas{display:grid;gap:0;border-top:2px solid var(--navy)}
-.area{display:grid;grid-template-columns:260px 1fr 1fr;gap:40px;padding:38px 0;border-bottom:1px solid var(--line);align-items:center}
-.area .ph{aspect-ratio:4/3;border-radius:2px}
-.area h3{font-size:32px;margin-bottom:8px}.area p{color:var(--mute)}
-.area ul{list-style:none;padding:0}
-.area li{padding:5px 0 5px 20px;position:relative;font-size:16px}
-.area li:before{content:"";position:absolute;left:0;top:16px;width:9px;height:1px;background:var(--goldd)}
+.chead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px}
+.track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:8px 2px 28px}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(420px,86%);scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 40px rgba(16,29,54,.08);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 28px 54px rgba(16,29,54,.16)}
+.card .ph{aspect-ratio:16/10}
+.card .b{padding:28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card h3{font-size:32px}.card p{color:var(--mute);font-size:16px}
+.card ul{list-style:none;padding:0;margin:4px 0 10px}
+.card li{padding:4px 0 4px 20px;position:relative;font-size:15px}
+.card li:before{content:"";position:absolute;left:0;top:15px;width:9px;height:1px;background:var(--goldd)}
+.go{margin-top:auto;display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;border-top:1px solid var(--line);padding:16px 0 0;font:600 15px var(--sans);color:var(--navy);cursor:pointer}
+.go svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;transition:transform .25s}.go:hover svg{transform:translateX(5px)}
+.nav2{display:flex;gap:10px;flex:none}
+.arr{width:52px;height:52px;border-radius:50%;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
+.arr:hover{background:var(--navy);color:var(--gold)}
+.arr svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2}
+.brand{display:flex;align-items:center;gap:12px}.brand img{height:42px;width:auto}.brand span{display:none;font:500 21px var(--serif);color:#fff}.brand b{color:var(--gold);font-weight:500}
+.soc{display:flex;gap:12px}
+.soc a{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--navy);margin:0;transition:background .25s,color .25s,transform .25s}
+.soc a:hover{background:var(--navy);color:var(--gold);transform:translateY(-3px)}
+.soc svg{width:21px;height:21px;fill:currentColor}
+footer .soc a{border-color:rgba(255,255,255,.22);color:#cfd6e4}footer .soc a:hover{background:var(--gold);color:var(--navy)}
 
 .band{background:var(--navy2);color:#fff;text-align:center;padding:96px 0}
 .band blockquote{font-family:var(--serif);font-size:clamp(30px,4.8vw,58px);line-height:1.15;max-width:20ch;margin:0 auto 22px}
@@ -70,12 +90,27 @@ nav .btn{padding:9px 16px;font-size:14px;color:#fff}
 .step:before{content:counter(s);font-family:var(--serif);font-size:42px;color:var(--goldd);display:block;line-height:1;margin-bottom:10px}
 .step h3{font-size:24px;margin-bottom:6px}.step p{color:var(--mute);font-size:16px}
 
-.principios{background:var(--navy);color:#fff}
-.principios h2{color:#fff}
-.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(201,164,92,.3);border:1px solid rgba(201,164,92,.3)}
-.pgrid div{background:var(--navy);padding:34px}
-.pgrid h3{font-size:26px;color:var(--gold);margin-bottom:8px}
-.pgrid p{color:#cfd6e4;font-size:17px}
+.values{background:radial-gradient(60% 80% at 100% 0%,rgba(201,164,92,.16),transparent 60%),var(--navy);color:#fff;padding:110px 0}
+.vgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
+.vside{position:sticky;top:110px}.vside h2{color:#fff;font-size:clamp(38px,5vw,62px)}
+.vside blockquote{font:italic 400 22px/1.55 var(--serif);color:#cfd6e4;border-left:2px solid var(--gold);padding-left:22px;margin:26px 0 14px}
+.vside cite{font-style:normal;color:var(--gold);font-size:15px;padding-left:24px}
+.v{display:grid;grid-template-columns:62px 1fr;gap:24px;padding:32px 0;border-top:1px solid rgba(201,164,92,.3);position:relative}
+.v:last-child{border-bottom:1px solid rgba(201,164,92,.3)}
+.v:after{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--gold);transition:width .7s}.v:hover:after{width:100%}
+.vi{width:62px;height:62px;border-radius:50%;border:1px solid rgba(201,164,92,.55);display:grid;place-items:center;transition:background .3s}.v:hover .vi{background:rgba(201,164,92,.18)}
+.vi svg,.ti svg,.tile svg{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.vi svg{width:27px;height:27px}
+.v h3{font-size:36px;color:#fff;margin-bottom:6px}.v p{color:#cfd6e4}
+.trust{background:var(--navy2);border-bottom:1px solid rgba(201,164,92,.25)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding-top:28px;padding-bottom:28px}
+.ti{display:flex;align-items:center;gap:14px;color:#b8c1d4;font-size:14px;line-height:1.35}.ti svg{width:30px;height:30px;flex:none}.ti b{display:block;color:#fff;font-size:15px}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}.js .rv.in{opacity:1;transform:none}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tile{background:rgba(255,255,255,.05);border:1px solid rgba(201,164,92,.3);border-radius:22px;padding:26px}
+.tile svg{width:28px;height:28px;margin-bottom:12px}.tile h3{font-size:22px;color:#fff;margin-bottom:6px}.tile p,.tile a{color:#cfd6e4;font-size:15px;line-height:1.55}
+.cl h2{font-size:clamp(38px,5.2vw,64px);margin-bottom:20px}
+.map{margin-top:44px;border-radius:24px;overflow:hidden;border:1px solid rgba(201,164,92,.35);height:340px}.map iframe{width:100%;height:100%;border:0}
+.flogo{text-align:center;padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid rgba(255,255,255,.1)}.flogo img{width:min(340px,70%)}
 /* Testimonios reales: quita "hidden" de la sección #testimonios solo con autorización escrita del cliente */
 
 .about{background:#fff}
@@ -116,7 +151,7 @@ footer a{color:#cfd6e4;margin-left:16px}
 .fab svg{width:22px;height:22px;fill:currentColor}
 .wafab{position:fixed;right:20px;bottom:78px;z-index:39;width:48px;height:48px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .wafab svg{width:26px;height:26px;fill:#fff}
-#chat{position:fixed;right:20px;bottom:20px;z-index:50;width:380px;max-width:calc(100vw - 24px);height:560px;max-height:calc(100vh - 40px);background:#fff;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.45);display:none;flex-direction:column;overflow:hidden}
+#chat{position:fixed;right:20px;bottom:20px;z-index:50;width:380px;max-width:calc(100vw - 24px);height:560px;max-height:calc(100vh - 40px);background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.45);display:none;flex-direction:column;overflow:hidden}
 #chat.open{display:flex}
 .ch{background:var(--navy);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
 .ch b{font:500 18px var(--serif)}.ch small{display:block;color:#aab4c8;font-size:12px}
@@ -129,24 +164,24 @@ footer a{color:#cfd6e4;margin-left:16px}
 #cta{display:none;margin:0 14px 8px}#cta.show{display:inline-flex;justify-content:center}
 #cf{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
 #cf input{background:#fff;color:var(--ink);border-color:var(--line)}
-#cf button{background:var(--navy);color:#fff;border:0;border-radius:4px;padding:0 16px;font:600 15px var(--sans);cursor:pointer}
+#cf button{background:var(--navy);color:#fff;border:0;border-radius:999px;padding:0 16px;font:600 15px var(--sans);cursor:pointer}
 
 @media(max-width:900px){
 section{padding:70px 0}nav a:not(.btn){display:none}
 .hero .grid,.about .grid,.contact .grid{grid-template-columns:1fr;gap:36px}
-.area{grid-template-columns:1fr;gap:18px}
-.steps{grid-template-columns:1fr 1fr}.pgrid{grid-template-columns:1fr}
+.steps{grid-template-columns:1fr 1fr}.vgrid{grid-template-columns:1fr;gap:36px}.vside{position:static}.trust .wrap{grid-template-columns:1fr 1fr}.tiles{grid-template-columns:1fr}
 .portrait{position:static;max-width:280px;font-size:90px}
 }
-@media(max-width:480px){.steps{grid-template-columns:1fr}#chat{right:12px;bottom:12px;height:calc(100vh - 24px)}}
+@media(max-width:480px){.trust .wrap{grid-template-columns:1fr}.steps{grid-template-columns:1fr}#chat{right:12px;bottom:12px;height:calc(100vh - 24px)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.7-.1 1.400z"/></symbol><symbol id="i-cal" viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14zM7 12h4v4H7z"/></symbol><symbol id="i-in" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol><symbol id="i-tt" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol></svg>
 <header><div class="wrap">
-<a class="brand" href="#inicio">Almonacid <b>Law Firm</b></a>
+<a class="brand" href="#inicio"><img src="images/logo.png" alt="Almonacid Law Firm" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span>Almonacid <b>Law Firm</b></span></a>
 <nav aria-label="Principal"><a href="#areas">Servicios</a><a href="#metodo">Cómo trabajamos</a><a href="#conoceme">Conóceme</a><a href="#faq">Preguntas</a><a href="#contacto">Contacto</a>
-<a class="btn wa" href="https://wa.me/51910254757?text=Hola%2C%20quisiera%20consultar%20sobre%20mi%20caso." target="_blank" rel="noopener">WhatsApp</a></nav>
+<a class="btn wa" href="https://wa.me/51910254757?text=Hola%2C%20quisiera%20consultar%20sobre%20mi%20caso." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a></nav>
 </div></header>
 
 <main id="inicio">
@@ -154,30 +189,32 @@ section{padding:70px 0}nav a:not(.btn){display:none}
 <div>
 <h1 class="load">Derecho estratégico para <em>resolver, proteger</em> y construir.</h1>
 <p class="lead load" style="animation-delay:.15s">Abogada en Huancayo especializada en propiedades, herencias y contratos. Analizamos tu caso con honestidad y buscamos la solución que realmente te conviene, dentro o fuera del juicio.</p>
-<div class="cta load" style="animation-delay:.3s">
-<a class="btn wa" href="https://wa.me/51910254757?text=Hola%2C%20quisiera%20agendar%20una%20consulta." target="_blank" rel="noopener">Agendar consulta</a>
-<a class="btn ghost" href="#contacto">Cuéntanos tu caso</a></div>
-<div class="facts load" style="animation-delay:.45s"><span>Presencial y virtual</span><span>Lunes a viernes, 8 a. m. a 6 p. m.</span><span>El Tambo, Huancayo</span></div>
+<div class="cta load" style="animation-delay:.3s"><a class="btn gold" href="https://wa.me/51910254757?text=Hola%2C%20quisiera%20agendar%20una%20consulta." target="_blank" rel="noopener"><svg><use href="#i-cal"/></svg>Agendar consulta</a><a class="btn wa" href="https://wa.me/51910254757?text=Hola%2C%20quisiera%20consultar%20sobre%20mi%20caso." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Escribir por WhatsApp</a></div>
+
 </div>
 <div class="teaser load" style="animation-delay:.4s">
 <h2>¿Cuál es tu situación?</h2>
 <p>Cuéntaselo a nuestro asistente. Te orienta en minutos y, si conviene, te acerca a la abogada.</p>
 <div class="chips">
-<button class="chip" data-q="Heredé un terreno y no está a mi nombre">Heredé un terreno y no está a mi nombre</button>
-<button class="chip" data-q="Quiero sanear mi propiedad">Quiero sanear mi propiedad</button>
-<button class="chip" data-q="Tengo un conflicto entre herederos">Tengo un conflicto entre herederos</button>
-<button class="chip" data-q="Necesito revisar un contrato antes de firmar">Necesito revisar un contrato antes de firmar</button>
+<button class="chip" data-q="Tengo un problema con una propiedad">Tengo un problema con una propiedad</button>
+<button class="chip" data-q="Falleció un familiar y hay que ver la herencia">Falleció un familiar y hay que ver la herencia</button>
+<button class="chip" data-q="Quiero revisar o hacer un contrato">Quiero revisar o hacer un contrato</button>
+<button class="chip" data-q="Tengo un conflicto y no sé si ir a juicio">Tengo un conflicto y no sé si ir a juicio</button>
+<button class="chip" data-q="No sé qué tipo de caso es el mío">No sé qué tipo de caso es el mío</button>
 </div></div>
 </div></div>
 
+<div class="trust"><div class="wrap">
+<div class="ti rv"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6l8-3zM9 12l2 2 4-4"/></svg><span><b>Abogada colegiada</b>CAL 94890</span></div>
+<div class="ti rv"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span><b>Presencial y virtual</b>Huancayo y todo el Perú</span></div>
+<div class="ti rv"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></svg><span><b>Conciliación y negociación</b>Antes de llegar a juicio</span></div>
+<div class="ti rv"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><span><b>Lunes a viernes</b>8 a. m. a 6 p. m.</span></div>
+</div></div>
 <section id="areas"><div class="wrap">
-<div class="head"><h2>Situaciones que abordamos</h2><p>Detrás de cada trámite pendiente suele haber patrimonio inmovilizado. Te ayudamos a ordenarlo y a recuperar su valor.</p></div>
-<div class="areas">
-<article class="area"><div class="ph" data-label="images/propiedades.jpg" style="background-image:url(images/propiedades.jpg)"></div><div><h3>Propiedades</h3><p>Terrenos y casas que no puedes vender, heredar o aprovechar por falta de saneamiento.</p></div><ul><li>Saneamiento de predios</li><li>Prescripción adquisitiva</li><li>Propiedad y posesión</li><li>Desalojos</li><li>División y partición</li></ul></article>
-<article class="area"><div class="ph" data-label="images/herencias.jpg" style="background-image:url(images/herencias.jpg)"></div><div><h3>Herencias</h3><p>Sucesiones pendientes y conflictos entre herederos, resueltos con orden y claridad.</p></div><ul><li>Sucesión intestada</li><li>Petición de herencia</li><li>Derechos hereditarios</li><li>División de bienes</li><li>Conflictos entre herederos</li></ul></article>
-<article class="area"><div class="ph" data-label="images/contratos.jpg" style="background-image:url(images/contratos.jpg)"></div><div><h3>Contratos</h3><p>Documentos bien elaborados que previenen problemas antes de que ocurran.</p></div><ul><li>Compraventa</li><li>Donaciones y transferencias</li><li>Revisión y elaboración</li><li>Nulidad</li><li>Incumplimiento</li></ul></article>
-<article class="area"><div class="ph" data-label="images/conflictos.jpg" style="background-image:url(images/conflictos.jpg)"></div><div><h3>Conflictos</h3><p>Defensa firme cuando hay que litigar y negociación inteligente cuando conviene más.</p></div><ul><li>Defensa judicial</li><li>Conflictos patrimoniales</li><li>Negociación</li><li>Conciliación extrajudicial</li><li>Prevención y solución</li></ul></article>
-</div></div></section>
+<div class="chead"><div class="head" style="margin:0"><h2>Situaciones que abordamos</h2><p>Detrás de cada trámite pendiente suele haber patrimonio inmovilizado. Te ayudamos a ordenarlo y a recuperar su valor.</p></div>
+<div class="nav2"><button class="arr" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="arr" id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+<div class="track" id="track" tabindex="0" aria-label="Áreas de práctica"><article class="card"><div class="ph" data-label="images/propiedades.jpg" style="background-image:url(images/propiedades.jpg)"></div><div class="b"><h3>Propiedades</h3><p>Terrenos y casas que no puedes vender, heredar o aprovechar por falta de saneamiento.</p><ul><li>Saneamiento de predios</li><li>Prescripción adquisitiva</li><li>Propiedad y posesión</li><li>Desalojos</li><li>División y partición</li></ul><button class="go" data-q="Tengo un problema con una propiedad"><span>Consultar sobre propiedades</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></article><article class="card"><div class="ph" data-label="images/herencias.jpg" style="background-image:url(images/herencias.jpg)"></div><div class="b"><h3>Herencias</h3><p>Sucesiones pendientes y conflictos entre herederos, resueltos con orden y claridad.</p><ul><li>Sucesión intestada</li><li>Petición de herencia</li><li>Derechos hereditarios</li><li>División de bienes</li><li>Conflictos entre herederos</li></ul><button class="go" data-q="Falleció un familiar y hay que ver la herencia"><span>Consultar sobre herencias</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></article><article class="card"><div class="ph" data-label="images/contratos.jpg" style="background-image:url(images/contratos.jpg)"></div><div class="b"><h3>Contratos</h3><p>Documentos bien elaborados que previenen problemas antes de que ocurran.</p><ul><li>Compraventa</li><li>Donaciones y transferencias</li><li>Revisión y elaboración</li><li>Nulidad</li><li>Incumplimiento</li></ul><button class="go" data-q="Quiero revisar o hacer un contrato"><span>Consultar sobre contratos</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></article><article class="card"><div class="ph" data-label="images/conflictos.jpg" style="background-image:url(images/conflictos.jpg)"></div><div class="b"><h3>Conflictos</h3><p>Defensa firme cuando hay que litigar y negociación inteligente cuando conviene más.</p><ul><li>Defensa judicial</li><li>Conflictos patrimoniales</li><li>Negociación</li><li>Conciliación extrajudicial</li><li>Prevención y solución</li></ul><button class="go" data-q="Tengo un conflicto y no sé si ir a juicio"><span>Consultar sobre conflictos</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></article></div>
+</div></section>
 
 <div class="band"><div class="wrap">
 <blockquote>El Poder Judicial es un medio, no el único camino.</blockquote>
@@ -194,14 +231,9 @@ section{padding:70px 0}nav a:not(.btn){display:none}
 <div class="step"><h3>Actuamos</h3><p>Te explicamos qué se hizo, qué ocurre y qué sigue, sin lenguaje jurídico innecesario.</p></div>
 </div></div></section>
 
-<section class="principios"><div class="wrap">
-<h2>Nuestros principios</h2>
-<div class="pgrid">
-<div><h3>Dignidad</h3><p>Detrás de cada expediente hay un ser humano, una familia, un patrimonio o un proyecto de vida que merece ser comprendido.</p></div>
-<div><h3>Honestidad</h3><p>No ofrecemos falsas certezas. Evaluamos las posibilidades con seriedad y te decimos lo que realmente hay.</p></div>
-<div><h3>Estrategia</h3><p>Conocimiento, evidencia y argumentos que se pueden sostener. Defender no es hablar más fuerte.</p></div>
-<div><h3>Solución real</h3><p>La pregunta que guía a la firma: ¿cuál es la solución que realmente le conviene a mi defendido?</p></div>
-</div></div></section>
+<section class="values"><div class="wrap vgrid">
+<div class="vside"><h2>Lo que nos guía</h2><blockquote>Prometo que los problemas serán analizados con seriedad, que las posibilidades serán evaluadas con honestidad y que trabajaremos con determinación para encontrar el mejor camino posible.</blockquote><cite>Solanch Joselyn Chipana Almonacid</cite></div>
+<div class="vlist"><article class="v rv"><div class="vi"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.500-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 11c0 5.500-7 10-7 10z"/></svg></div><div><h3>Dignidad</h3><p>Detrás de cada expediente hay una persona, una familia, un patrimonio o un proyecto de vida. Nadie es un simple medio para alcanzar un resultado.</p></div></article><article class="v rv"><div class="vi"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6l8-3zM9 12l2 2 4-4"/></svg></div><div><h3>Honestidad</h3><p>No ofrecemos falsas certezas. Medimos las posibilidades, señalamos los riesgos y te decimos lo que realmente hay, aunque no sea lo que esperabas.</p></div></article><article class="v rv"><div class="vi"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.500 8.500l-2 5-5 2 2-5 5-2z"/></svg></div><div><h3>Estrategia</h3><p>Conocimiento, evidencia y argumentos que se pueden sostener. Defender no es hablar más fuerte: es elegir el mejor camino.</p></div></article><article class="v rv"><div class="vi"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM8 12l3 3 5-6"/></svg></div><div><h3>Solución real</h3><p>La pregunta que guía a la firma: ¿cuál es la solución que realmente le conviene a quien defendemos?</p></div></article></div></div></section>
 
 <section id="testimonios" hidden><div class="wrap"><h2>Testimonios</h2><!-- Activar solo con autorización escrita y si el código de ética lo permite --></div></section>
 
@@ -231,7 +263,7 @@ section{padding:70px 0}nav a:not(.btn){display:none}
 <p>Creo contenido digital para acercar el Derecho a quienes desconocen sus alternativas. También lidero Tawa Dorada, una comunidad orientada al desarrollo y fortalecimiento de mujeres.</p>
 <p><strong>Soy abogada, litigante, negociadora y, sobre todo, una solucionadora.</strong> Prometo que tu problema será analizado con seriedad, que las posibilidades se evaluarán con honestidad y que, cuando asumamos tu defensa, trabajaremos con determinación para encontrar el mejor camino posible.</p>
 </details>
-<p style="margin-top:22px"><a href="https://www.tiktok.com/@bogadajoselyn" target="_blank" rel="noopener" style="color:var(--navy);font-weight:600">Mira mi contenido en TikTok</a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/abogadajoselyn/" target="_blank" rel="noopener" style="color:var(--navy);font-weight:600">Perfil en LinkedIn</a></p>
+<div class="soc" style="margin-top:26px"><a href="https://www.tiktok.com/@bogadajoselyn" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tt"/></svg></a><a href="https://www.linkedin.com/in/abogadajoselyn/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-in"/></svg></a></div>
 </div></div></section>
 
 <section id="faq" class="faq"><div class="wrap" style="max-width:860px">
@@ -245,32 +277,26 @@ section{padding:70px 0}nav a:not(.btn){display:none}
 </div></section>
 
 <section id="contacto" class="contact"><div class="wrap grid">
-<div>
-<h2>Cuéntanos tu caso</h2>
-<p class="sub">Completa el formulario y se abrirá WhatsApp con tu mensaje listo para enviar. Te responderemos en horario de atención.</p>
-<form id="f">
-<label>Tu nombre<input id="n" required autocomplete="name" placeholder="Nombre y apellido"></label>
-<label>¿Sobre qué es tu consulta?<select id="t"><option>Propiedades</option><option>Herencias</option><option>Contratos</option><option>Conflicto o proceso judicial</option><option>Otro tema</option></select></label>
-<label>Cuéntanos brevemente tu situación<textarea id="m" required placeholder="Por ejemplo: heredé un terreno y aún no está a mi nombre..."></textarea></label>
-<button class="btn wa" type="submit">Enviar por WhatsApp</button>
-<p class="note">No envíes documentos ni datos sensibles por este medio. Los revisaremos contigo en la consulta.</p>
-</form></div>
-<div><h2>Dónde encontrarnos</h2>
-<dl>
-<div><dt>Oficina</dt><dd>Jr. Nemecio Raez N° 624, oficina 104<br>El Tambo, Huancayo<br><a href="https://www.google.com/maps/search/?api=1&query=Jr.+Nemecio+Raez+624+El+Tambo+Huancayo" target="_blank" rel="noopener">Ver en Google Maps</a></dd></div>
-<div><dt>Atención virtual</dt><dd>Consultas por videollamada o WhatsApp desde cualquier lugar del país.</dd></div>
-<div><dt>Horario</dt><dd>Lunes a viernes, de 8 a. m. a 6 p. m.</dd></div>
-<div><dt>Contacto directo</dt><dd><a href="https://wa.me/51910254757" target="_blank" rel="noopener">+51 910 254 757</a><br><a href="mailto:jossolanch@gmail.com">jossolanch@gmail.com</a></dd></div>
-</dl></div>
-</div></section>
+<div class="cl"><h2>Tu patrimonio merece una estrategia.</h2>
+<p class="sub">Escríbenos y la abogada revisará tu situación con seriedad y honestidad. Atención presencial en Huancayo y virtual en todo el país.</p>
+<div class="cta"><a class="btn gold" href="https://wa.me/51910254757?text=Hola%2C%20quisiera%20agendar%20una%20consulta." target="_blank" rel="noopener"><svg><use href="#i-cal"/></svg>Agendar consulta</a><a class="btn wa" href="https://wa.me/51910254757?text=Hola%2C%20quisiera%20consultar%20sobre%20mi%20caso." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Escribir por WhatsApp</a></div>
+<div class="soc"><a href="https://www.tiktok.com/@bogadajoselyn" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tt"/></svg></a><a href="https://www.linkedin.com/in/abogadajoselyn/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-in"/></svg></a></div></div>
+<div class="tiles">
+<div class="tile"><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11zM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg><h3>Oficina</h3><p>Jr. Nemecio Raez N° 624, oficina 104<br>El Tambo, Huancayo<br><a href="https://www.google.com/maps/search/?api=1&query=Jr.+Nemecio+Raez+624+El+Tambo+Huancayo" target="_blank" rel="noopener">Cómo llegar</a></p></div>
+<div class="tile"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><h3>Horario</h3><p>Lunes a viernes<br>8 a. m. a 6 p. m.</p></div>
+<div class="tile"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/></svg><h3>Contacto</h3><p><a href="https://wa.me/51910254757" target="_blank" rel="noopener">+51 910 254 757</a><br><a href="mailto:jossolanch@gmail.com">jossolanch@gmail.com</a></p></div>
+<div class="tile"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><h3>Atención virtual</h3><p>Videollamada o WhatsApp desde cualquier lugar del país.</p></div>
+</div></div>
+<div class="wrap"><div class="map"><iframe title="Ubicación de Almonacid Law Firm" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Jr.+Nemecio+Raez+624+El+Tambo+Huancayo&amp;output=embed"></iframe></div></div></section>
 </main>
 
 <footer>
+<div class="flogo"><img src="images/logo-full.png" alt="Almonacid Law Firm"></div>
 <div class="wrap"><div>© <span id="y">2026</span> Almonacid Law Firm. Abogada Solanch Joselyn Chipana Almonacid, CAL 94890.</div>
-<div><a href="https://www.tiktok.com/@bogadajoselyn" target="_blank" rel="noopener">TikTok</a><a href="https://www.linkedin.com/in/abogadajoselyn/" target="_blank" rel="noopener">LinkedIn</a></div></div>
+<div class="soc"><a href="https://www.tiktok.com/@bogadajoselyn" target="_blank" rel="noopener" aria-label="TikTok"><svg><use href="#i-tt"/></svg></a><a href="https://www.linkedin.com/in/abogadajoselyn/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-in"/></svg></a></div></div>
 <div class="legal"><details><summary>Aviso legal y política de privacidad</summary>
 <p><strong>Aviso legal.</strong> La información de este sitio y las respuestas del asistente virtual son de carácter general e informativo; no constituyen asesoría legal ni crean una relación abogado-cliente. Cada caso requiere un análisis particular y los resultados no pueden garantizarse.</p>
-<p><strong>Privacidad.</strong> El formulario no almacena datos: tu mensaje se abre en WhatsApp y solo se envía cuando tú lo confirmas. Los mensajes escritos al asistente se envían a un proveedor de inteligencia artificial para generar la respuesta; no compartas datos sensibles ni documentos. Los datos que nos entregues se usarán solo para atender tu consulta, conforme a la Ley N° 29733. Para rectificación o eliminación, escribe a jossolanch@gmail.com.</p>
+<p><strong>Privacidad.</strong> Los mensajes escritos al asistente se envían a un proveedor de inteligencia artificial para generar la respuesta; no compartas datos sensibles ni documentos. Los datos que nos entregues se usarán solo para atender tu consulta, conforme a la Ley N° 29733. Para rectificación o eliminación, escribe a jossolanch@gmail.com.</p>
 </details></div>
 </footer>
 
@@ -288,9 +314,6 @@ section{padding:70px 0}nav a:not(.btn){display:none}
 <script>
 var $=function(i){return document.getElementById(i)};
 $('y').textContent=new Date().getFullYear();
-$('f').addEventListener('submit',function(e){e.preventDefault();
-var t='Hola, soy '+$('n').value.trim()+'.\nTema: '+$('t').value+'.\n\n'+$('m').value.trim();
-window.open('https://wa.me/51910254757?text='+encodeURIComponent(t),'_blank','noopener')});
 
 var msgs=[],busy=false,MAX=12,chat=$('chat'),log=$('log');
 function add(c,t){var d=document.createElement('div');d.className='m '+c;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
@@ -310,9 +333,11 @@ fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},bod
 .catch(function(){w.textContent='No pude conectarme. Escríbenos por WhatsApp al +51 910 254 757.'})
 .finally(function(){busy=false;updateCta();log.scrollTop=log.scrollHeight})}
 $('open').onclick=function(){openChat()};$('close').onclick=closeChat;
-document.querySelectorAll('.chip').forEach(function(b){b.onclick=function(){openChat(b.dataset.q)}});
+document.querySelectorAll('.chip,.go').forEach(function(b){b.onclick=function(){openChat(b.dataset.q)}});
 $('cf').addEventListener('submit',function(e){e.preventDefault();var v=$('ci').value;$('ci').value='';send(v)});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeChat()});
+var tr=$('track');$('prev').onclick=function(){tr.scrollBy({left:-444,behavior:'smooth'})};$('next').onclick=function(){tr.scrollBy({left:444,behavior:'smooth'})};
+document.documentElement.classList.add('js');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)});
 </script>
 </body>
 </html>

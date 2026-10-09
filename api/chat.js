@@ -22,6 +22,7 @@ export default async function handler(req, res) {
     parts: [{ text: String(m.content || '').slice(0, 800) }]
   }));
 
+  if (!process.env.GEMINI_API_KEY) console.error('DIAGNOSTICO: falta la variable GEMINI_API_KEY');
   try {
     const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
       method: 'POST',
@@ -33,10 +34,12 @@ export default async function handler(req, res) {
       })
     });
     const d = await r.json();
+    if (!r.ok) console.error('DIAGNOSTICO Gemini', r.status, JSON.stringify(d).slice(0, 400));
     const reply = d?.candidates?.[0]?.content?.parts?.map(p => p.text).join('').trim();
     if (!reply) throw new Error('sin respuesta');
     res.status(200).json({ reply });
   } catch (e) {
+    console.error('DIAGNOSTICO error:', e && e.message);
     res.status(200).json({ reply: 'No pude responder en este momento. Escríbenos por WhatsApp al +51 910 254 757 y la abogada te atenderá.' });
   }
 }
